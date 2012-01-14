@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#
+# A JSPkg bash script
+install()
+{
+  local project=$1
+
+  echo "downloading $project"
+  `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
+  unzip -d $project $project.zip
+  `rm $project.zip`
+}
+
+install $2
