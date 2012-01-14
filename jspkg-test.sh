@@ -47,4 +47,13 @@ it_removes_archive() {
   test "$cleanup" = 'cleaning up easytabs.zip'
   exists="$([ -e ./easytabs.zip ] && echo yes || echo no)"
   test $exists = 'no'
+  rm -r ./easytabs
+}
+
+it_installs_package() {
+  install="$($jspkg install easytabs)"
+  ends="$([[ $install == *downloaded\ and\ unpacked\ to\ \"easytabs/\"\ directory\ :-\) ]] && echo yes || echo no)"
+  test $ends = 'yes'
+  exists="$([ -e ./easytabs/README.markdown ] && echo yes || echo no)"
+  test $exists = 'yes'
 }
