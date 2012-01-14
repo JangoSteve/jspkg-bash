@@ -10,6 +10,6 @@ it_downcases_package_name() {
 }
 
 it_replaces_special_characters_in_name() {
-  permalink="$($jspkg permalink easy\ tabs)"
-  test $permalink = 'easy-tabs'
+  permalink="$($jspkg permalink easy\ tabs\ project)"
+  test $permalink = 'easy-tabs-project'
 }
