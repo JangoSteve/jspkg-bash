@@ -12,16 +12,26 @@ download(){
   `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
 }
 
+unpack(){
+  local project=$1
+  echo "unpacking $project.zip"
+  unzip -d $project $project.zip
+}
+
+remove() {
+  local project=$1
+  echo "cleaning up $project.zip"
+  `rm $project.zip`
+}
+
 install(){
   local project=$1
 
   download $project
 
-  echo "unpacking $project.zip"
-  `unzip -d $project $project.zip`
+  unpack $project
 
-  echo "cleaning up $project.zip"
-  `rm $project.zip`
+  remove $project
 
   echo "downloaded and unpacked to \"$project/\" directory :-)"
 }
@@ -35,6 +45,16 @@ case "$1" in
   'download')
     shift 1
     download $@
+    exit
+    ;;
+  'unpack')
+    shift 1
+    unpack $@
+    exit
+    ;;
+  'remove')
+    shift 1
+    remove $@
     exit
     ;;
 esac

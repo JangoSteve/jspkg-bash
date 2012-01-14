@@ -4,6 +4,17 @@ describe "jspkg: Installs JS packages"
 
 jspkg="./jspkg"
 
+# Cleanup easytabs.zip and easytabs/ from previous tests
+if [ -e ./easytabs.zip ]
+then
+  rm ./easytabs.zip
+fi
+
+if [ -d ./easytabs ]
+then
+  rm -r ./easytabs
+fi
+
 it_downcases_package_name() {
   permalink="$($jspkg permalink EasyTabs)"
   test $permalink = 'easytabs'
@@ -19,5 +30,21 @@ it_downloads_zip() {
   test "$download" = 'downloading easytabs'
   exists="$([ -e ./easytabs.zip ] && echo yes || echo no)"
   test $exists = 'yes'
-  rm ./easytabs.zip
+}
+
+it_unpacks_zip() {
+  unpack="$($jspkg unpack easytabs)"
+  begins="$([[ $unpack == unpacking\ easytabs.zip* ]] && echo yes || echo no)"
+  test $begins = 'yes'
+  exists="$([ -d ./easytabs ] && echo yes || echo no)"
+  test $exists = 'yes'
+  unpacked="$([ -e ./easytabs/README.markdown ] && echo yes || echo no)"
+  test $unpacked = 'yes'
+}
+
+it_removes_archive() {
+  cleanup="$($jspkg remove easytabs)"
+  test "$cleanup" = 'cleaning up easytabs.zip'
+  exists="$([ -e ./easytabs.zip ] && echo yes || echo no)"
+  test $exists = 'no'
 }
