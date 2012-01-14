@@ -6,11 +6,16 @@ permalink(){
   echo ${lc//[^a-z]/-}
 }
 
+download(){
+  local project=$1
+  echo "downloading $project"
+  `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
+}
+
 install(){
   local project=$1
 
-  echo "downloading $project"
-  `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
+  download $project
 
   echo "unpacking $project.zip"
   `unzip -d $project $project.zip`
@@ -21,11 +26,17 @@ install(){
   echo "downloaded and unpacked to \"$project/\" directory :-)"
 }
 
-if [ $1 == 'permalink' ]
-then
-  shift 1
-  permalink $@
-  exit
-fi
+case "$1" in
+  'permalink')
+    shift 1
+    permalink $@
+    exit
+    ;;
+  'download')
+    shift 1
+    download $@
+    exit
+    ;;
+esac
 
 install $2
