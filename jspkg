@@ -1,20 +1,31 @@
 #!/usr/bin/env bash
 #
 # A JSPkg bash script
-install()
-{
+permalink(){
+  local lc="$(tr [A-Z] [a-z] <<< "$@")"
+  echo ${lc//[^a-z]/-}
+}
+
+install(){
   local project=$1
 
   echo "downloading $project"
   `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
 
   echo "unpacking $project.zip"
-  unzip -d $project $project.zip
+  `unzip -d $project $project.zip`
 
   echo "cleaning up $project.zip"
   `rm $project.zip`
 
   echo "downloaded and unpacked to \"$project/\" directory :-)"
 }
+
+if [ $1 == 'permalink' ]
+then
+  shift 1
+  permalink $@
+  exit
+fi
 
 install $2
