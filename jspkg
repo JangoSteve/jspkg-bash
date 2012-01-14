@@ -57,6 +57,9 @@ case "$1" in
     remove $@
     exit
     ;;
+  'install')
+    shift 1
+    install $@
+    exit
+    ;;
 esac
-
-install $2
