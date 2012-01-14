@@ -25,7 +25,7 @@ remove() {
 }
 
 install(){
-  local project=$1
+  local project="$(permalink $1)"
 
   download $project
 

@@ -51,7 +51,7 @@ it_removes_archive() {
 }
 
 it_installs_package() {
-  install="$($jspkg install easytabs)"
+  install="$($jspkg install EasyTabs)"
   ends="$([[ $install == *downloaded\ and\ unpacked\ to\ \"easytabs/\"\ directory\ :-\) ]] && echo yes || echo no)"
   test $ends = 'yes'
   exists="$([ -e ./easytabs/README.markdown ] && echo yes || echo no)"
