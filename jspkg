@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 #
 # A JSPkg bash script
+
+url=${URL:='http://jspkg.com'}
+
 permalink(){
   local lc="$(tr [A-Z] [a-z] <<< "$@")"
   echo ${lc//[^a-z]/-}
@@ -9,7 +12,7 @@ permalink(){
 download(){
   local project=$1
   echo "downloading $project"
-  `curl -L -# -C - -o $project.zip http://jshub.dev/packages/$project/download/`
+  `curl -L -# -C - -o $project.zip $url/packages/$project/download/`
 }
 
 unpack(){

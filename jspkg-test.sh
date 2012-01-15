@@ -2,6 +2,7 @@
 
 describe "jspkg: Installs JS packages"
 
+export URL=${URL:='http://jshub.dev'}
 jspkg="./jspkg"
 
 # Cleanup easytabs.zip and easytabs/ from previous tests
@@ -16,7 +17,7 @@ then
 fi
 
 it_downcases_package_name() {
-  permalink="$($jspkg permalink EasyTabs)"
+  permalink=`$jspkg permalink EasyTabs`
   test $permalink = 'easytabs'
 }
 
@@ -56,4 +57,5 @@ it_installs_package() {
   test $ends = 'yes'
   exists="$([ -e ./easytabs/README.markdown ] && echo yes || echo no)"
   test $exists = 'yes'
+  rm -r ./easytabs
 }
