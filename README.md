@@ -24,7 +24,8 @@ Run `jspkg COMMAND VALUE`. The main command you'll be using is
 jspkg install EasyTabs
 ```
 
-This will install the [easytabs project from
-jspkg.com](http://jspkg.com/packages/easytabs).
+This will install the [EasyTabs from
+jspkg.com/packages/easytabs](http://jspkg.com/packages/easytabs) to
+`CURRENT_DIRECTORY/easytabs/`.
 
 For more info, run `jspkg -h`
