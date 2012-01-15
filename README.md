@@ -26,3 +26,5 @@ jspkg install EasyTabs
 
 This will install the [easytabs project from
 jspkg.com](http://jspkg.com/packages/easytabs).
+
+For more info, run `jspkg -h`
