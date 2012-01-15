@@ -4,6 +4,26 @@
 
 url=${URL:='http://jspkg.com'}
 
+help(){
+  cat <<EOF
+
+  USAGE:
+    jspkg [-h] COMMAND VALUE
+
+  EXAMPLES:
+    jspkg permalink EasyTabs
+      easytabs
+
+    jspkg install EasyTabs
+      downloading easytabs
+      ######################################################################## 100.0%
+      unpacking easytabs.zip
+      [CLIPPED...]
+      cleaning up easytabs.zip
+      downloaded and unpacked to "easytabs/" directory :-)
+EOF
+}
+
 permalink(){
   local lc="$(tr [A-Z] [a-z] <<< "$@")"
   echo ${lc//[^a-z]/-}
@@ -40,29 +60,27 @@ install(){
 }
 
 case "$1" in
+  '' | '-h' | '--help')
+    help
+    ;;
   'permalink')
     shift 1
     permalink $@
-    exit
     ;;
   'download')
     shift 1
     download $@
-    exit
     ;;
   'unpack')
     shift 1
     unpack $@
-    exit
     ;;
   'remove')
     shift 1
     remove $@
-    exit
     ;;
   'install')
     shift 1
     install $@
-    exit
     ;;
 esac

@@ -16,6 +16,10 @@ then
   rm -r ./easytabs
 fi
 
+it_shows_help() {
+  $jspkg -h | grep USAGE
+}
+
 it_downcases_package_name() {
   permalink=`$jspkg permalink EasyTabs`
   test $permalink = 'easytabs'
