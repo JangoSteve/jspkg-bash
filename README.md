@@ -30,6 +30,18 @@ jspkg.com/packages/easytabs](http://jspkg.com/packages/easytabs) to
 
 For more info, run `jspkg -h`
 
+## todos
+
+* ~~get permalink for package name~~
+* ~~install package~~
+* install package with explicit version
+* uninstall package (?)
+* install collection of packages
+  * send list to server to retrieve list of resolved dependencies
+  * install all packages from retrieved list
+* track packages installed to directory with PKGFILE
+  * generate / update PGKFILE.lock when packages installed
+
 ## tests
 
 To run tests, [install roundup](https://github.com/bmizerany/roundup/blob/master/INSTALLING#files) and run `URL=http://localhost:3000 roundup jspkg-test.sh`.
